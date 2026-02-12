@@ -50,7 +50,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (!token || session) return;
-
+    console.log(token);
     const interval = setInterval(async () => {
       const res = await fetch(`/api/qr/status?token=${token}`);
       const data = await res.json();
