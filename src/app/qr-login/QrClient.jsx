@@ -10,10 +10,8 @@ export default function QRClient() {
     await fetch("/api/qr/approve", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        token,
-        user: "mobileUser123",
-      }),
+      credentials: "include", // ✅ send session cookie
+      body: JSON.stringify({ token }),
     });
 
     alert("✅ Approved! Desktop will login now.");
