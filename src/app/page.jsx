@@ -29,6 +29,7 @@ export default function LoginPage() {
   };
 
   useEffect(() => {
+    console.log(session);
     if (session) return;
 
     async function createQR() {
@@ -48,13 +49,12 @@ export default function LoginPage() {
   }, [session]);
 
   useEffect(() => {
-    console.log(`token : ${token}, session : ${session}`);
     if (!token || session) return;
 
     const interval = setInterval(async () => {
       const res = await fetch(`/api/qr/status?token=${token}`);
       const data = await res.json();
-
+      console.log(data);
       if (data.approved) {
         window.location.href = "/dashboard";
       }
